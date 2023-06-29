@@ -28,7 +28,7 @@ def brainfuck_to_cpp(brainfuck,cellsize=300000):
     if not isinstance(cellsize,int):
         raise ValueError('Cell size must be integer.')
     code='void run(){\n'
-    code+='    char cell['+str(cellsize)+']={0};\n    int p=0;\n    memset(cell,0,sizeof(cell));\n'
+    code+='    unsigned char *cell=new unsigned char['+str(cellsize)+'];\n    int p=0;\nfor(int i=0;i<'+str(cellsize)+';i++) cell[i]=0;\n'
     translate={'>':'p++;','<':'p--;',',':'cell[p]=getchar();','.':'putchar(cell[p]);','[':'while(cell[p]){',']':'}','+':'++cell[p];','-':'--cell[p];'}
     for i in brainfuck:
         if i in translate:
@@ -148,6 +148,6 @@ def _fastbf_inter():
     func=brainfuck_to_function(code,int(args.cellsize))
     func()
 __all__=['brainfuck_to_function','dist_brainfuck']
-__version__='2.0.5'
+__version__='2.0.8'
 if __name__=='__main__':
     _fastbf_inter()

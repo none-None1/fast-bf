@@ -14,7 +14,7 @@ To use the package, run like this:
 
 ```python
 >>> from fastbf import brainfuck_to_function
->>> code='--<-<<+[+[<+>--->->->-<<<]>]<<--.<++++++.<<-..<<.<+.>>.>>.<<<.+++.>>.>>-.<<<+.'
+>>> code='++++++++[>++++++++<-]>++++++++.>++++++++++++[>++++++++<-]>+++++.+++++++..+++.>++++[>++++++++<-]>.<<<<+++++++++++++++.>>.+++.------.--------.>>+.'
 >>> func=brainfuck_to_function(code) # This will take several seconds, because the C++ compiler is compiling your code.
 >>> func
 <built-in method run of PyCapsule object at 0x0000022568364150>
@@ -26,7 +26,7 @@ You can also convert brainf**k to Python modules by writing setup.py like this:
 
 ```python
 from fastbf import dist_brainfuck
-code='--<-<<+[+[<+>--->->->-<<<]>]<<--.<++++++.<<-..<<.<+.>>.>>.<<<.+++.>>.>>-.<<<+.'
+code='++++++++[>++++++++<-]>++++++++.>++++++++++++[>++++++++<-]>+++++.+++++++..+++.>++++[>++++++++<-]>.<<<<+++++++++++++++.>>.+++.------.--------.>>+.'
 dist_brainfuck(
     code,modulename='hello'
 )
@@ -40,4 +40,5 @@ import hello
 hello.run() # Hello World!
 ```
 
-You will not see the release 2.0.2 and 2.0.3 in here, but you still can install them using pip.
+Note that moving the pointer to the left of the origin causes **UNDEFINED BEHAVIOR** in this version, that's why I change the Hello World code.
+The version 2.0.6 and 2.0.7 are omitted here, because they are already yanked.
