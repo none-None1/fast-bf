@@ -40,3 +40,4 @@ import hello
 hello.run() # Hello World!
 ```
 
+You will not see the release 2.0.2 and 2.0.3 in here, but you still can install them using pip.

@@ -132,7 +132,7 @@ def dist_brainfuck(brainfuck,modulename='foo',cellsize=300000):
     :return: None
     """
     with open(modulename+'.py','w') as f:
-        f.write('from ._foo import *')
+        f.write('from _foo import *')
     cpp = brainfuck_to_cpp(brainfuck,cellsize)
     wrap = wrap_cpp(cpp)
     dist_cpp(wrap)
@@ -147,6 +147,6 @@ def _fastbf_inter():
     func=brainfuck_to_function(code,int(args.cellsize))
     func()
 __all__=['brainfuck_to_function','dist_brainfuck']
-__version__='2.0.1'
+__version__='2.0.4'
 if __name__=='__main__':
     _fastbf_inter()

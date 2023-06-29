@@ -5,7 +5,7 @@ def readme():
 setup(
     name='fast-brainfuck',
     py_modules=['fastbf'],
-    version='2.0.1',
+    version='2.0.4',
     entry_points={
         'console_scripts':[
             'fastbf=fastbf:_fastbf_inter'
@@ -28,5 +28,5 @@ setup(
         'Topic :: Software Development :: Code Generators',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Development Status :: 6 - Mature'
-    ]
+    ],url='https://github.com/none-None1/fast-bf'
 )
