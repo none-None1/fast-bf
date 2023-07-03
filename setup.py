@@ -5,7 +5,7 @@ def readme():
 setup(
     name='fast-brainfuck',
     py_modules=['fastbf'],
-    version='2.0.8',
+    version='3.0.1',
     entry_points={
         'console_scripts':[
             'fastbf=fastbf:_fastbf_inter'

@@ -1,3 +1,10 @@
+
+# A big bugfix is applied to this package due to the technique Python uses to import modules.
+
+In previous versions, when brainfuck_to_function is called, it creates a module named _foo, which is imported. But Python also stores it into a cache, that means when you call brainfuck_to_function again, the new module would not be imported, which causes a function the same as the previous function is returned.
+
+However, in this version and higher, a module with a random name is created instead, which fixed the bug.
+
 ### Fast Brainf**k
 
 The real name of this package is not fast-bf, it's [fast-brainf**k](https://pypi.org/project/fast-brainfuck/).

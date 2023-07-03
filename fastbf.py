@@ -35,7 +35,7 @@ def brainfuck_to_cpp(brainfuck,cellsize=300000):
             code += '    '+translate[i]+'\n'
     code+='}'
     return code
-def wrap_cpp(cpp):
+def wrap_cpp(cpp,dn='_foo'):
     """
     Wrap C++ code into code usable by Python.
     :param cpp: C++ code
@@ -49,10 +49,10 @@ namespace py=pybind11;
     '''
     code+=cpp
     code+='''
-PYBIND11_MODULE(_foo,self){
+PYBIND11_MODULE(%s,self){
     self.def("run",&run);
 }
-    '''
+    '''%dn
     return code
 def dist_cpp(cpp):
     """
@@ -84,11 +84,11 @@ def brainfuck_to_function(brainfuck,cellsize=300000):
     dn=random_string()
     os.mkdir(dn)
     os.chdir(dn)
-    distcode='''
+    distcode=f'''
 from setuptools import setup,Extension
 from pybind11 import get_include
 _foo=Extension(
-    name='_foo',
+    name='{dn}',
     sources=['_foo.cpp'],
     language='c++',
     include_dirs=[get_include()],
@@ -99,7 +99,7 @@ setup(
 )
     '''
     cpp=brainfuck_to_cpp(brainfuck,cellsize)
-    wrap=wrap_cpp(cpp)
+    wrap=wrap_cpp(cpp,dn)
     with open('_foo.cpp','w') as f:
         f.write(wrap)
     with open('setup.py','w') as f:
@@ -108,7 +108,7 @@ setup(
     if platform.system()!='Windows':
         os.chmod(os.path.join(_tmp(),dn),0o777)
         run(
-            f'{python} setup.py build_ext --inplace',shell=True,stdout=PIPE,stderr=PIPE # Finally! I've fixed Linux support!
+            f'{python} setup.py build_ext --inplace',shell=True, stdout=PIPE, stderr=PIPE # Finally! I've fixed Linux support!
         )
     else:
         run(
@@ -120,7 +120,7 @@ setup(
             ], shell=True, stdout=PIPE, stderr=PIPE
         )
     sys.path.append(os.path.join(_tmp(),dn))
-    foo=__import__('_foo')
+    foo=__import__(dn)
     os.chdir(cwd)
     sys.path.pop()
     return foo.run
@@ -148,6 +148,6 @@ def _fastbf_inter():
     func=brainfuck_to_function(code,int(args.cellsize))
     func()
 __all__=['brainfuck_to_function','dist_brainfuck']
-__version__='2.0.8'
+__version__='3.0.1'
 if __name__=='__main__':
     _fastbf_inter()
