@@ -1,3 +1,4 @@
+[![Downloads](https://static.pepy.tech/badge/fast-brainfuck)](https://pepy.tech/project/fast-brainfuck) [![Downloads](https://static.pepy.tech/badge/fast-brainfuck/month)](https://pepy.tech/project/fast-brainfuck) [![Downloads](https://static.pepy.tech/badge/fast-brainfuck/week)](https://pepy.tech/project/fast-brainfuck)
 
 # A big bugfix is applied to this package due to the technique Python uses to import modules.
 
@@ -47,5 +48,5 @@ import hello
 hello.run() # Hello World!
 ```
 
-Note that moving the pointer to the left of the origin causes **UNDEFINED BEHAVIOR** in this version, that's why I change the Hello World code.
+Note that moving the pointer to the left of the origin causes **UNDEFINED BEHAVIOR** in this version, that's why I changed the Hello World code.
 The version 2.0.6 and 2.0.7 are omitted here, because they are already yanked.
